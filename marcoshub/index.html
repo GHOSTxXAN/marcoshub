@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcos Hub</title>
+    <style>
+        /* 🔹 Estilos Gerais - Bloco 0 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212; /* Fundo escuro */
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* 🔹 Container Principal - Bloco 1 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 🔹 Cabeçalho - Bloco 2 */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.3); /* Cyan RGB */
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(90deg, #00ffcc, #ff00ff); /* Gradiente RGB */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* 🔹 Grade de Links (Caixas) - Bloco 3 */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        /* 🔹 Estilo das Caixas - Bloco 4 */
+        .hub-box {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid #333;
+            cursor: pointer;
+        }
+
+        .hub-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+            border: 1px solid rgba(0, 255, 255, 0.5);
+        }
+
+        .hub-box h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            color: #fff;
+        }
+
+        .hub-box p {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .hub-box .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #00ffcc; /* Cyan RGB */
+        }
+
+        /* 🔹 Efeitos RGB nas Bordas - Bloco 5 */
+        .hub-box:nth-child(1) { border-top: 3px solid #00ffcc; } /* Cyan */
+        .hub-box:nth-child(2) { border-top: 3px solid #ff00ff; } /* Magenta */
+        .hub-box:nth-child(3) { border-top: 3px solid #ffcc00; } /* Amarelo */
+        .hub-box:nth-child(4) { border-top: 3px solid #00ff66; } /* Verde */
+
+        /* 🔹 Rodapé - Bloco 6 */
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #333;
+        }
+
+        /* 🔹 Responsividade - Bloco 7 */
+        @media (max-width: 768px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 🔹 Container Principal -->
+    <div class="container">
+        <!-- 🔹 Cabeçalho -->
+        <header>
+            <h1>Marcos Hub</h1>
+            <p class="subtitle">Central dos meus projetos.</p>
+        </header>
+
+        <!-- 🔹 Grade de Links (Caixas) -->
+        <div class="hub-grid">
+            <!-- 🔹 Caixa 1 - Portfólio -->
+            <div class="hub-box" onclick="window.location.href='portifolo/index.html'">
+                <div class="icon">📁</div>
+                <h2>Meu Portfólio</h2>
+                <p>Confira meus projetos e trabalhos</p>
+            </div>
+
+            <!-- 🔹 Caixa 2 - MIBR -->
+            <div class="hub-box" onclick="window.location.href='mibr/index.html'">
+                <div class="icon">🎮</div>
+                <h2>MIBR</h2>
+                <p>Site oficial do time Made in Brazil</p>
+            </div>
+
+            <!-- 🔹 Caixa 3 - LOUD -->
+            <div class="hub-box" onclick="window.location.href='https://loud.gg'">
+                <div class="icon">🔥</div>
+                <h2>LOUD</h2>
+                <p>Conheça a organização LOUD</p>
+            </div>
+
+            <!-- 🔹 Caixa 4 - Brincadeira -->
+            <div class="hub-box" onclick="window.location.href='#'">
+                <div class="icon">❓</div>
+                <h2>Sei Lá</h2>
+                <p>Algo misterioso está por vir...</p>
+            </div>
+        </div>
+
+        <!-- 🔹 Rodapé -->
+        <footer>
+            <p>© 2024 Marcos Hub. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

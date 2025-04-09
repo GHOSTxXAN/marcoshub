@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIBR - Made in Brazil | Valorant Team</title>
+    <style>
+        /* Estilo geral - Bloco 0 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-image: url('background.png');
+            background-repeat: repeat;
+        }
+        
+        /* Container principal - Bloco 1 */
+        .container {
+            width: 900px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        /* Cabeçalho - Bloco 2 */
+        .header {
+            background-color: #0f183f;
+            color: white;
+            padding: 15px;
+            border-radius: 5px 5px 0 0;
+            border: 2px solid #000000;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
+        /* Menu de navegação - Bloco 3 */
+        .nav {
+            background-color: #000000;
+            padding: 5px;
+            border-left: 2px solid #000000;
+            border-right: 2px solid #000000;
+        }
+        
+        .nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+        
+        .nav li {
+            display: inline;
+        }
+        
+        .nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+        }
+        
+        .nav a:hover {
+            background-color: #0f183f;
+            border-radius: 3px;
+        }
+        
+        /* Conteúdo principal - Bloco 4 */
+        .main-content {
+            display: flex;
+            margin-top: 10px;
+        }
+        
+        /* Coluna esquerda - Bloco 5 */
+        .left-column {
+            width: 200px;
+            margin-right: 10px;
+        }
+        
+        /* Perfil do time - Bloco 6 */
+        .profile-box {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        .profile-box h2 {
+            background-color: #0f183f;
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            font-size: 16px;
+        }
+        
+        .profile-pic {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .profile-pic img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000000;
+            border-radius: 5px;
+        }
+        
+        .profile-info {
+            font-size: 12px;
+        }
+        
+        /* Amigos/Redes Sociais - Bloco 7 */
+        .social-box {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .social-box h2 {
+            background-color: #0f183f;
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            font-size: 16px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .social-icon {
+            text-align: center;
+            margin: 5px;
+        }
+        
+        .social-icon img {
+            width: 48px;
+            height: 48px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+        }
+        
+        /* Coluna direita - Bloco 8 */
+        .right-column {
+            width: 690px;
+        }
+        
+        /* Scraps/Recados - Bloco 9 */
+        .scraps-box {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        .scraps-box h2 {
+            background-color: #0f183f;
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            font-size: 16px;
+        }
+        
+        .scrap {
+            border-bottom: 1px dashed #CCCCCC;
+            padding: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .scrap-author {
+            font-weight: bold;
+            color: #0f183f;
+        }
+        
+        .scrap-date {
+            font-size: 10px;
+            color: #666666;
+        }
+        
+        .scrap-content {
+            margin: 5px 0;
+        }
+        
+        /* Notícias/Conteúdo - Bloco 10 */
+        .news-box {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        .news-box h2 {
+            background-color: #0f183f;
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            font-size: 16px;
+        }
+        
+        .news-item {
+            margin-bottom: 15px;
+        }
+        
+        .news-title {
+            font-weight: bold;
+            color: #000000;
+            font-size: 14px;
+        }
+        
+        .news-date {
+            font-size: 10px;
+            color: #666666;
+        }
+        
+        .news-content {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        
+        /* Jogadores - Bloco 11 */
+        .players-box {
+            background-color: #FFFFFF;
+            border: 2px solid #000000;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        
+        .players-box h2 {
+            background-color: #0f183f;
+            color: white;
+            padding: 5px;
+            margin: -10px -10px 10px -10px;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            font-size: 16px;
+        }
+        
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .player-card {
+            text-align: center;
+            border: 1px solid #CCCCCC;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        
+        .player-card img {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #000000;
+            border-radius: 5px;
+        }
+        
+        .player-name {
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .player-role {
+            font-size: 11px;
+            color: #666666;
+        }
+        
+        /* Rodapé - Bloco 12 */
+        .footer {
+            background-color: #000000;
+            color: #FFFFFF;
+            text-align: center;
+            padding: 10px;
+            border-radius: 0 0 5px 5px;
+            border: 2px solid #000000;
+            font-size: 11px;
+        }
+        
+        /* Efeitos interativos */
+        .profile-box, .social-box, .scraps-box, .news-box, .players-box {
+            transition: transform 0.3s;
+        }
+        
+        .profile-box:hover, .social-box:hover, .scraps-box:hover, .news-box:hover, .players-box:hover {
+            transform: scale(1.01);
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Formulário de scrap - Bloco 13 */
+        .scrap-form {
+            margin-top: 15px;
+        }
+        
+        .scrap-form textarea {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 5px;
+            border: 1px solid #CCCCCC;
+            border-radius: 3px;
+            padding: 5px;
+        }
+        
+        .scrap-form button {
+            background-color: #0f183f;
+            color: white;
+            border: 1px solid #000000;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .scrap-form button:hover {
+            background-color: #0a0f27;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+</head>
+<body>
+    <!-- Bloco 1 - Container principal -->
+    <div class="container">
+        <!-- Bloco 2 - Cabeçalho -->
+        <div class="header">
+            <h1>MIBR - Made in Brazil</h1>
+            <p>Time Profissional de Valorant</p>
+        </div>
+        
+        <!-- Bloco 3 - Menu de navegação -->
+        <div class="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Jogadores</a></li>
+                <li><a href="#">Resultados</a></li>
+                <li><a href="#">Calendário</a></li>
+                <li><a href="#">Galeria</a></li>
+                <li><a href="#">Fórum</a></li>
+            </ul>
+        </div>
+        
+        <!-- Bloco 4 - Conteúdo principal -->
+        <div class="main-content">
+            <!-- Bloco 5 - Coluna esquerda -->
+            <div class="left-column">
+                <!-- Bloco 6 - Perfil do time -->
+                <div class="profile-box">
+                    <h2>Perfil do MIBR</h2>
+                    <div class="profile-pic">
+                        <img src="https://yt3.googleusercontent.com/sA8dT1yaTmcV_M9sY6QnfT64s_sYSPPkeCQl51gJHECMfpq_qTBJvlaYCFDIYwG9CdH1a97XFA=s900-c-k-c0x00ffffff-no-rj" alt="Logo MIBR">
+                    </div>
+                    <div class="profile-info">
+                        <p><strong>IGL:</strong> artzin</p>
+                        <p><strong>País:</strong> Brasil</p>
+                        <p><strong>Organização:</strong> MIBR</p>
+                        <p><strong>Jogo:</strong> Valorant</p>
+                        <p><strong>Estrelinha:</strong> ASPAS❤️</p>
+                    </div>
+                </div>
+                
+                <!-- Bloco 7 - Redes sociais -->
+                <div class="social-box">
+                    <h2>Redes Sociais</h2>
+                    <div class="social-icons">
+                        <div class="social-icon">
+                            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Logo_of_Twitter.svg/1200px-Logo_of_Twitter.svg.png" alt="Twitter"></a>
+                            <div>Twitter</div>
+                        </div>
+                        <div class="social-icon">
+                            <a href="#"><img src="https://preview.redd.it/2xu7kcnz48s21.jpg?auto=webp&s=49ac4828370f8f535f3ed75f4a276ca53e3db6e6" alt="Instagram"></a>
+                            <div>Instagram</div>
+                        </div>
+                        <div class="social-icon">
+                            <a href="#"><img src="https://files.softicons.com/download/social-media-icons/flat-vintage-social-icons-by-guilherme-lima/png/512x512/Facebook.png" alt="Facebook"></a>
+                            <div>Facebook</div>
+                        </div>
+                        <div class="social-icon">
+                            <a href="#"><img src="https://preview.redd.it/0johpbzzu5k21.jpg?auto=webp&s=80ae4a4b1cfd849fe84ce2815ba0f6ca1debace7" alt="YouTube"></a>
+                            <div>YouTube</div>
+                        </div>
+                        <div class="social-icon">
+                            <a href="#"><img src="https://icones.pro/wp-content/uploads/2021/05/symbole-twitch-logo-icone-noir.png" alt="Twitch"></a>
+                            <div>Twitch</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bloco 8 - Coluna direita -->
+            <div class="right-column">
+                <!-- Bloco 9 - Scraps/Recados -->
+                <div class="scraps-box">
+                    <h2>Recados</h2>
+                    
+                    <div class="scrap">
+                        <div class="scrap-author">Fallen</div>
+                        <div class="scrap-date">10/06/2025 15:30</div>
+                        <div class="scrap-content">Boa sorte para o time no próximo campeonato! Vamos com tudo!</div>
+                    </div>
+                    
+                    <div class="scrap">
+                        <div class="scrap-author">MIBR Animes</div>
+                        <div class="scrap-date">09/06/2025 11:15</div>
+                        <div class="scrap-content">Vocês arrasaram no último jogo! Continuem assim!</div>
+                    </div>
+                    
+                    <div class="scrap">
+                        <div class="scrap-author">TCKU #usujo</div>
+                        <div class="scrap-date">08/06/2025 10:45</div>
+                        <div class="scrap-content">Jogaram bem, uma pena que ganharam da minha C9! 😭😭😭😭</div>
+                    </div>
+                    
+                    <!-- Bloco 13 - Formulário de scrap -->
+                    <div class="scrap-form">
+                        <textarea placeholder="Deixe seu recado para o MIBR!"></textarea>
+                        <button>Enviar</button>
+                    </div>
+                </div>
+                
+                <!-- Bloco 10 - Notícias -->
+                <div class="news-box">
+                    <h2>Últimas Notícias</h2>
+                    
+                    <div class="news-item">
+                        <div class="news-title">MIBR vence ultimo jogo contra a C9!</div>
+                        <div class="news-date">07/04/2025</div>
+                        <div class="news-content">
+                            O time MIBR de Valorant conquistou mais uma vitória! Contra a Cloud 9 e garante a classificação para a Premiere!
+                        </div>
+                    </div>
+                    
+                    <div class="news-item">
+                        <div class="news-title">Novo uniforme MIBR é lançado</div>
+                        <div class="news-date">05/01/2025</div>
+                        <div class="news-content">
+                            Novo uniforme da MIBR é lindo! Com tematica de time de beisibol, os jogadores agora entraram nos estandes de games com estilos! 🥵
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bloco 11 - Jogadores -->
+                <div class="players-box">
+                    <h2>Elenco Atual</h2>
+                    
+                    <div class="players-grid">
+                        <div class="player-card">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR44Cj6KRptEJjdKlI2vs-Z6bQHvCkA61ZUvw&s" alt="Jogador 1">
+                            <div class="player-name">ASPAS</div>
+                            <div class="player-role">"gira ASPAS gira!!!"</div>
+                        </div>
+                        
+                        <div class="player-card">
+                            <img src="https://ugc.production.linktr.ee/7e63aead-58bd-4625-ba86-e252e1d4baab_cortez-sof--vermelho.jpeg?io=true&size=avatar-v3_0" alt="Jogador 2">
+                            <div class="player-name">Cortezia</div>
+                            <div class="player-role">MVP!!!</div>
+                        </div>
+                        
+                        <div class="player-card">
+                            <img src="https://pbs.twimg.com/media/GmhCWq3W0AAq0tc.jpg" alt="Jogador 3">
+                            <div class="player-name">Verno</div>
+                            <div class="player-role">"Gringo"</div>
+                        </div>
+                        
+                        <div class="player-card">
+                            <img src="https://owcdn.net/img/64328a8010bd9.png" alt="Jogador 4">
+                            <div class="player-name">Artzin</div>
+                            <div class="player-role">O rei do Clutch</div>
+                        </div>
+                        
+                        <div class="player-card">
+                            <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/8e36d99e-084f-43ba-b996-32382f170036-profile_image-300x300.png" alt="Jogador 5">
+                            <div class="player-name">xenom</div>
+                            <div class="player-role">"VAMOOOOOO!!!"</div>
+                        </div>
+                        
+                        <div class="player-card">
+                            <img src="https://owcdn.net/img/6416970f1e605.png" alt="Treinador">
+                            <div class="player-name">fRoD</div>
+                            <div class="player-role">Treinador</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bloco 12 - Rodapé -->
+        <div class="footer">
+            <p>© 2023 MIBR - Made in Brazil. Todos os direitos reservados.</p>
+            
+        </div>
+    </div>
+    
+
+    <script>
+        // Configuração do Firebase (substitua com seus dados)
+        const firebaseConfig = {
+          apiKey: "SUA_API_KEY",
+          authDomain: "SEU_PROJETO.firebaseapp.com",
+          databaseURL: "https://SEU_PROJETO.firebaseio.com",
+          projectId: "SEU_PROJETO",
+          storageBucket: "SEU_PROJETO.appspot.com",
+          messagingSenderId: "SEU_SENDER_ID",
+          appId: "SEU_APP_ID"
+        };
+        
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+      </script>
+
+    <script>
+        // Interatividade básica
+        document.querySelector('.scrap-form button').addEventListener('click', function() {
+            const textarea = document.querySelector('.scrap-form textarea');
+            if (textarea.value.trim() !== '') {
+                const scrapsBox = document.querySelector('.scraps-box');
+                const newScrap = document.createElement('div');
+                newScrap.className = 'scrap';
+                newScrap.innerHTML = `
+                    <div class="scrap-author">Você</div>
+                    <div class="scrap-date">${new Date().toLocaleString()}</div>
+                    <div class="scrap-content">${textarea.value}</div>
+                `;
+                scrapsBox.insertBefore(newScrap, document.querySelector('.scrap-form'));
+                textarea.value = '';
+                
+                // Efeito visual
+                newScrap.style.opacity = '0';
+                setTimeout(() => {
+                    newScrap.style.transition = 'opacity 0.5s';
+                    newScrap.style.opacity = '1';
+                }, 10);
+            }
+        });
+
+        // Função para carregar comentários
+  async function loadComments() {
+    try {
+      const response = await fetch('get_comments.php');
+      const data = await response.json();
+      
+      if (data.success) {
+        const scrapsBox = document.querySelector('.scraps-box');
+        
+        // Limpa comentários existentes
+        const existingScraps = document.querySelectorAll('.scrap');
+        existingScraps.forEach(scrap => {
+          if (!scrap.classList.contains('scrap-form-container')) {
+            scrap.remove();
+          }
+        });
+        
+        // Adiciona cada comentário
+        data.comments.forEach(comment => {
+          const newScrap = document.createElement('div');
+          newScrap.className = 'scrap';
+          newScrap.innerHTML = `
+            <div class="scrap-author">${comment.author || 'Anônimo'}</div>
+            <div class="scrap-date">${new Date(comment.created_at).toLocaleString()}</div>
+            <div class="scrap-content">${comment.content}</div>
+          `;
+          scrapsBox.insertBefore(newScrap, document.querySelector('.scrap-form'));
+        });
+      }
+    } catch (error) {
+      console.error('Erro ao carregar comentários:', error);
+    }
+  }
+  
+  // Função para enviar comentário
+  document.querySelector('.scrap-form button').addEventListener('click', async function() {
+    const textarea = document.querySelector('.scrap-form textarea');
+    const content = textarea.value.trim();
+    
+    if (content !== '') {
+      try {
+        const response = await fetch('save_comment.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: `author=Usuário&content=${encodeURIComponent(content)}`
+        });
+        
+        const data = await response.json();
+        if (data.success) {
+          textarea.value = '';
+          loadComments(); // Recarrega os comentários
+        }
+      } catch (error) {
+        console.error('Erro ao enviar comentário:', error);
+      }
+    }
+  });
+  
+  // Carrega os comentários quando a página abre
+  window.addEventListener('DOMContentLoaded', loadComments);
+    </script>
+</body>
+</html>

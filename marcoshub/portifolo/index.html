@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Portfólio - Marcos</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Animação de fundo com gradiente para a seção Home */
+    #home {
+      background: linear-gradient(-45deg, #eb11ff, #3a37ff, #8c00ff, #0ab1ff);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      color: white;
+      height: 100vh;
+    }
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    /* Estilo para o scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* Estilos gerais das seções */
+    section {
+      padding: 60px 0;
+      min-height: 100vh;
+      
+    }
+    /* Navbar customizada */
+    .navbar {
+      background: rgba(0, 0, 0, 0.8);
+    }
+    .navbar-nav .nav-link {
+      color: #fff !important;
+      margin-right: 15px;
+    }
+    /* Footer */
+    .footer {
+      background: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    /* Estilos para as logos das competências */
+    .skill-logo {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+    /* Ajuste de margem para evitar sobreposição com a navbar fixa */
+    .section-offset {
+      padding-top: 70px;
+      margin-top: -70px;
+    }
+    /* Estilo para os cards de projeto */
+    .project-card {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .project-card:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar fixa -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">Marcos 🤓</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">Sobre</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Competências</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projetos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#loja">Loja</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Seção Home com animação de fundo -->
+  <section id="home" class="d-flex align-items-center justify-content-center">
+    <div class="text-center">
+      <h1>Olá, eu sou Marcos!</h1>
+      <p class="lead">Fundador da <strong>Hannya Code</strong></p>
+      <p>Desenvolvedor Front-end especializado em HTML, CSS e JavaScript.</p>
+      <p>Clique em Saiba Mais para <strong>SABER MAIS 😱</strong></p>
+      <!-- Botão que desce para a seção Sobre -->
+      <a href="#about" class="btn btn-light mt-4">Saiba Mais</a>
+    </div>
+  </section>
+  
+  <!-- Seção Sobre -->
+  <section id="about" class="section-offset">
+    <div class="container"><p></p>
+      <h2 class="text-center mb-4">Sobre Mim</h2>
+      <p>
+        Olá, meu nome é Marcos, tenho 19 anos, sou iniciante em Front-end. 
+        Fundador da startup <strong>Hannya Code</strong>, tenho conhecimento sobre HTML, CSS e JavaScript.
+        Tenho foco em design e montagem de site, pretendo estudar mais sobre SQL e outros assuntos sobre Back-end.
+        <p>E sobre <strong>Hannya Code</strong>? Ela é uma Start Up que eu fundei com o intuito de lucrar fazendo o que eu estudo.</p>
+        Na <strong>Hannya Code</strong> eu monto um site modelo que pode ser alterado conforme o cliente pedir.
+        Sites sobre lojas, turismo, forum, portfólio, literalmente o que o cliente quiser eu faço.
+      </p>
+      <p>Nos meus porjetos eu mostro alguns que já fiz, seja para vender quanto para conhecimento, clique em <strong>Projetos</strong> aqui em cima e veja eles.</p>
+    </div>
+  </section>
+  
+  <!-- Seção Competências -->
+  <section id="skills" class="bg-light section-offset">
+    <div class="container">
+      <h2 class="text-center mb-4">Minhas Competências</h2>
+      <div class="row">
+        <!-- Competência HTML -->  
+        <div class="col-md-4 text-center mb-4">
+          <img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5 Logo">
+          <h4>HTML5</h4>
+          <p>Junior em estudo.</p>
+        </div>
+        <!-- Competência CSS -->  
+        <div class="col-md-4 text-center mb-4">
+          <img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3 Logo">
+          <h4>CSS3</h4>
+          <p>Junior em estudo.</p>
+        </div>
+        <!-- Competência JavaScript -->  
+        <div class="col-md-4 text-center mb-4">
+          <img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript Logo">
+          <h4>JavaScript</h4>
+          <p>Aprendendo...</p>
+        </div>
+
+        <!-- Competência Node.js -->
+        <div class="col-md-4 text-center mb-4">
+            <img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js Logo">
+            <h4>Node.js</h4>
+            <p>junior em estudo.</p>
+        </div>
+  
+        <!-- Competência Python -->
+<div class="col-md-4 text-center mb-4">
+    <img class="skill-logo" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Logo">
+    <h4>Python</h4>
+    <p>Iniciante e passa-tempo</p>
+  </div>
+  
+
+      </div>
+    </div>
+  </section>
+  
+<!-- Seção Projetos -->
+<section id="projects" class="section-offset">
+  <div class="container">
+    <h2 class="text-center mb-4">Meus Projetos</h2>
+    <div class="row">
+      <!-- Projeto 1 -->  
+      <div class="col-md-4 mb-4">
+        <div class="card project-card" data-project="1" data-toggle="modal" data-target="#projectModal1">
+          <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1348510855192514672/image.png?ex=67d5a8d9&is=67d45759&hm=15cb560cc0f10e05392814cde1b0d4337fcc61bebf69058f1c7bc344b6711dc7&" class="card-img-top" alt="Projeto 1">
+          <div class="card-body">
+            <h5 class="card-title">SmartBit</h5>
+            <p class="card-text">SmrtBit é um site com iniciativa de ser um App de delivery. Com foco em diminuir o desperdício e barateando lanches que não foram vendidos ou não entregues.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 2 -->
+      <div class="col-md-4 mb-4">
+        <div class="card project-card" data-project="2" data-toggle="modal" data-target="#projectModal2">
+          <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350270677952888935/image.png?ex=67d62110&is=67d4cf90&hm=6cea4ea44ea50a7d2fd73614ab6ce1cef2ef82f8ebe37748f2576032113019ff&" class="card-img-top" alt="Projeto 2">
+          <div class="card-body">
+            <h5 class="card-title">Turismo Online</h5>
+            <p class="card-text">Um site interativo com um mapa de Ilha Grande e com opções de estadia e passeios de lancha.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 3 -->
+      <div class="col-md-4 mb-4">
+        <div class="card project-card" data-project="3" data-toggle="modal" data-target="#projectModal3">
+          <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350271036570079253/image.png?ex=67d62165&is=67d4cfe5&hm=a064c848fea916dec9e08fffa896c9b2b346775df8206c9b31c529856a4d656a&" class="card-img-top" alt="Projeto 3">
+          <div class="card-body">
+            <h5 class="card-title">Sistema de automação para Condomínio</h5>
+            <p class="card-text">Um sistema de formulário que coleta dados e transfoma em um arquivo que pode ser impresso, para liberações de pessoas em um condomínio.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projeto 4 -->
+      <div class="col-md-4 mb-4">
+        <div class="card project-card" data-project="4" data-toggle="modal" data-target="#projectModal4">
+          <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350272636210511882/image.png?ex=67d622e3&is=67d4d163&hm=a266bafb70d93e95c3ed2a36dc776e9e42ca670e3dc39fe0c80f7d7df6cadac9&" class="card-img-top" alt="Projeto 4">
+          <div class="card-body">
+            <h5 class="card-title">Bot de Discord</h5>
+            <p class="card-text">Um bot que com comandos cria e adiciona um cargo de ADV (advertência) e anuncia uma mensagem de quem foi penalizado e o motivo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal para o Projeto 1 -->
+<div class="modal fade" id="projectModal1" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel1">SmartBit</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselProject1" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1348510855192514672/image.png?ex=67d5a8d9&is=67d45759&hm=15cb560cc0f10e05392814cde1b0d4337fcc61bebf69058f1c7bc344b6711dc7&" class="d-block w-100" alt="Imagem do Projeto 1">
+            </div>
+            <!-- Adicione mais imagens conforme necessário -->
+          </div>
+          <a class="carousel-control-prev" href="#carouselProject1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselProject1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para o Projeto 2 -->
+<div class="modal fade" id="projectModal2" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel2" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel2">Turismo Online</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselProject2" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350270677952888935/image.png?ex=67d62110&is=67d4cf90&hm=6cea4ea44ea50a7d2fd73614ab6ce1cef2ef82f8ebe37748f2576032113019ff&" class="d-block w-100" alt="Imagem do Projeto 2">
+            </div>
+            <!-- Adicione mais imagens conforme necessário -->
+            <div class="carousel-item">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350276584199819336/image.png?ex=67d62690&is=67d4d510&hm=cabbc6950631e074d0f813ad9deccd806ea19aedd636b22d0e83fad295952395&" class="d-block w-100" alt="Imagem do Projeto 1 - 2">
+            </div>
+            <!-- Terceira Imagem -->
+            <div class="carousel-item">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350285661940486245/image.png?ex=67d62f04&is=67d4dd84&hm=e91a3c8df9ee7fc9f9a059063c327c22bd9f7c9e5790452508b1e9c6e2c41d8d&" class="d-block w-100" alt="Imagem do Projeto 1 - 3">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselProject2" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselProject2" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para o Projeto 3 -->
+<div class="modal fade" id="projectModal3" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel3" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel3">Sistema de automação para Condomínio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselProject3" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350271036570079253/image.png?ex=67d62165&is=67d4cfe5&hm=a064c848fea916dec9e08fffa896c9b2b346775df8206c9b31c529856a4d656a&" class="d-block w-100" alt="Imagem do Projeto 3">
+            </div>
+            <!-- Adicione mais imagens conforme necessário -->
+          </div>
+          <a class="carousel-control-prev" href="#carouselProject3" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselProject3" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para o Projeto 4 -->
+<div class="modal fade" id="projectModal4" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel4" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel4">Bot de Discord</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselProject4" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="https://cdn.discordapp.com/attachments/1320940221763813389/1350272636210511882/image.png?ex=67d622e3&is=67d4d163&hm=a266bafb70d93e95c3ed2a36dc776e9e42ca670e3dc39fe0c80f7d7df6cadac9&" class="d-block w-100" alt="Imagem do Projeto 4">
+            </div>
+            <!-- Adicione mais imagens conforme necessário -->
+          </div>
+          <a class="carousel-control-prev" href="#carouselProject4" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselProject4" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+    </div>
+  </section>
+  
+  <!-- Seção Contato -->
+  <section id="loja" class="py-20 bg-gray-100 text-center">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-gray-800">Hannya Shop</h2>
+      <p class="text-gray-600 mt-2">Confira meus produtos e suporte meu trabalho!</p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+          <img src="produto1.jpg" alt="Produto 1" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-lg font-semibold text-gray-800 mt-2">Produto 1</h3>
+          <p class="text-gray-600">Descrição breve do produto.</p>
+          <a href="loja.html" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">Ver Mais</a>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+          <img src="produto2.jpg" alt="Produto 2" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-lg font-semibold text-gray-800 mt-2">Produto 2</h3>
+          <p class="text-gray-600">Descrição breve do produto.</p>
+          <a href="loja.html" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">Ver Mais</a>
+        </div>
+        
+        <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition">
+          <img src="produto3.jpg" alt="Produto 3" class="w-full h-48 object-cover rounded-md">
+          <h3 class="text-lg font-semibold text-gray-800 mt-2">Produto 3</h3>
+          <p class="text-gray-600">Descrição breve do produto.</p>
+          <a href="loja.html" class="mt-2 inline-block bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition">Ver Mais</a>
+        </div>
+      </div>
+      
+      <a href="loja.html" class="mt-6 inline-block bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition">Visitar Loja</a>
+    </div>
+  </section>
+  
+  
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Marcos - Hannya Code. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+  
+ 
+  
+  <!-- jQuery e Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- jQuery para scroll suave e abertura do modal de projeto -->
+  <script>
+    $(document).ready(function(){
+      // Scroll suave
+      $('a.nav-link, a.btn').click(function(e) {
+        if (this.hash !== "") {
+          e.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top - 70
+          }, 800);
+        }
+      });
+      
+      // Abrir modal ao clicar no card de projeto
+      $('.project-card').click(function(){
+        // Use data attributes para identificar qual projeto foi clicado
+        var projectId = $(this).data('project');
+        $('#projectModalLabel').text('Projeto ' + projectId);
+        // Reinicia o carrossel para a primeira imagem
+        $('#carouselProject').carousel(0);
+        // Abre o modal
+        $('#projectModal').modal('show');
+      });
+    });
+  </script>
+</body>
+</html>

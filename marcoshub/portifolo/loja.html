@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Digital - Leve e Interativo</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      background: linear-gradient(-45deg, #ff0000, #000000, #ff0000, #000000);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .header {
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+    
+    .btn-custom {
+      background-color: #c50000;
+      color: #000;
+      border: none;
+      padding: 12px 30px;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: background-color 0.3s ease;
+    }
+    .btn-custom:hover {
+      background-color: #00000000;
+      transition: 0.8s ;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin: 50px 0;
+      font-size: 2.5rem;
+    }
+    
+    .card-custom {
+      background: rgba(8, 0, 0, 0.1);
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .card-custom:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+    
+    .card-custom img {
+      transition: transform 0.5s ease;
+    }
+    
+    .card-custom:hover img {
+      transform: scale(1.05);
+    }
+    
+    .card-custom .card-body {
+      padding: 20px;
+    }
+    
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header" data-aos="fade-down">
+    <h1>Hannya Shop - Sua interface na palma da mão!</h1>
+    <p>Descubra nossos templates e sistemas com uma experiência única e interativa!</p>
+    <a href="#templates" class="btn btn-custom" data-aos="fade-up">Explorar Templates</a>
+  </header>
+  
+  <!-- Seção de Templates Personalizados -->
+  <section id="templates" class="container" data-aos="fade-up">
+    <h2 class="section-title">Catálogo</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-E6VU2t-nmgejnACRmMU0PaLfDHO1wptDoA&s" class="card-img-top" alt="Loja Virtual">
+          <div class="card-body">
+            <h5 class="card-title">Loja Virtual</h5>
+            <p class="card-text">Quer vender mais rápido e alcançar mais pessoas?
+              Garanta já seu site virtual!
+            </p>
+            <a href="catalogo-loja.html" target="_blank" class="btn btn-custom">Ver Catálogo</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom">
+          <img src="https://i0.wp.com/www.edybarbosaoficial.com.br/wp-content/uploads/2022/06/Nove-plataformas-de-afiliados.png?fit=900%2C470&ssl=1" class="card-img-top" alt="Afiliado">
+          <div class="card-body">
+            <h5 class="card-title">Site de Afiliado</h5>
+            <p class="card-text">Venda produtos digitais como afiliado.</p>
+            <a href="catalogo-afiliado.html" target="_blank" class="btn btn-custom">Ver Catálogo</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card card-custom">
+          <img src="https://sorocaba.com.br/wp-content/uploads/2024/05/trafego-pago-para-afiliados.jpg" class="card-img-top" alt="Negócios Online">
+          <div class="card-body">
+            <h5 class="card-title">Negócios Online</h5>
+            <p class="card-text">Soluções para alavancar seu negócio digital.</p>
+            <a href="catalogo-negocios.html" target="_blank" class="btn btn-custom">Ver Catálogo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer data-aos="fade-up">
+    <p>&copy; 2025 Loja Digital - Todos os direitos reservados</p>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
