@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Turma de Administração - CIEE</title>
-    <!-- Adicione os SDKs do Firebase -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -174,7 +174,7 @@
     </div>
 
     <script>
-        // Configuração do Firebase
+        // Configuração do Firebase - substitua com seus dados
         const firebaseConfig = {
   apiKey: "AIzaSyCev05iYOeTq-razhwxdHlkVyvkLKfUNEU",
   authDomain: "ciee-cee80.firebaseapp.com",
@@ -184,88 +184,79 @@
   messagingSenderId: "160199858488",
   appId: "1:160199858488:web:cfcf15478229877eaac9cd"
 };
-
         // Inicializa o Firebase
         firebase.initializeApp(firebaseConfig);
         
-        // Inicializa o Firestore
-        const db = firebase.firestore();
-        
-        // Referência para a coleção de comentários
-        const commentsRef = db.collection("comments");
+        // Referência para o Realtime Database
+        const database = firebase.database();
+        const commentsRef = database.ref('comments');
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Carrega comentários quando a página é carregada
+            // Carrega comentários
             loadComments();
             
-            // Adiciona evento de submit ao formulário
+            // Formulário de envio
             document.getElementById('commentForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Pega os valores do formulário
                 const name = document.getElementById('name').value.trim();
                 const message = document.getElementById('message').value.trim();
-                const submitBtn = document.getElementById('submitBtn');
                 
                 if (name && message) {
-                    // Desabilita o botão para evitar múltiplos envios
+                    const submitBtn = document.getElementById('submitBtn');
                     submitBtn.disabled = true;
                     submitBtn.textContent = 'Enviando...';
                     
-                    // Adiciona comentário ao Firestore
-                    addComment(name, message)
-                        .then(() => {
-                            // Limpa o formulário após o envio
-                            document.getElementById('commentForm').reset();
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = 'Enviar Comentário';
-                        })
-                        .catch(error => {
-                            console.error("Erro ao adicionar comentário: ", error);
-                            alert("Ocorreu um erro ao enviar seu comentário. Por favor, tente novamente.");
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = 'Enviar Comentário';
-                        });
+                    // Envia para o Realtime Database
+                    commentsRef.push({
+                        name: name,
+                        message: message,
+                        timestamp: firebase.database.ServerValue.TIMESTAMP
+                    })
+                    .then(() => {
+                        document.getElementById('commentForm').reset();
+                    })
+                    .catch((error) => {
+                        console.error("Erro ao enviar:", error);
+                        alert("Erro ao enviar comentário!");
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Enviar Comentário';
+                    });
                 }
             });
         });
-        
-        function addComment(name, message) {
-            // Cria objeto de comentário com data/hora atual
-            const comment = {
-                name: name,
-                message: message,
-                date: firebase.firestore.FieldValue.serverTimestamp() // Usa o timestamp do servidor
-            };
-            
-            // Adiciona ao Firestore e retorna a Promise
-            return commentsRef.add(comment);
-        }
-        
+
         function loadComments() {
-            // Configura um listener em tempo real para os comentários
-            commentsRef.orderBy("date", "desc").onSnapshot(snapshot => {
+            commentsRef.orderByChild('timestamp').on('value', (snapshot) => {
                 const commentsList = document.getElementById('commentsList');
-                
-                // Limpa a lista
                 commentsList.innerHTML = '';
                 
-                if (snapshot.empty) {
-                    commentsList.innerHTML = '<p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>';
+                if (!snapshot.exists()) {
+                    commentsList.innerHTML = '<p>Nenhum comentário ainda. Seja o primeiro!</p>';
                     return;
                 }
                 
-                snapshot.forEach(doc => {
-                    const comment = doc.data();
+                // Converte para array e ordena por timestamp (mais novos primeiro)
+                const comments = [];
+                snapshot.forEach((childSnapshot) => {
+                    comments.push({
+                        id: childSnapshot.key,
+                        ...childSnapshot.val()
+                    });
+                });
+                
+                comments.sort((a, b) => b.timestamp - a.timestamp);
+                
+                // Exibe os comentários
+                comments.forEach(comment => {
                     const commentDiv = document.createElement('div');
                     commentDiv.className = 'comment';
                     
-                    // Verifica se a data existe (pode não existir imediatamente)
-                    let dateString = "Data não disponível";
-                    if (comment.date) {
-                        const date = comment.date.toDate(); // Converte Firestore Timestamp para Date
-                        dateString = date.toLocaleDateString('pt-BR') + ' às ' + date.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
-                    }
+                    const date = new Date(comment.timestamp);
+                    const dateString = date.toLocaleDateString('pt-BR') + ' às ' + 
+                                      date.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
                     
                     commentDiv.innerHTML = `
                         <div class="comment-header">
@@ -279,9 +270,6 @@
                     
                     commentsList.appendChild(commentDiv);
                 });
-            }, error => {
-                console.error("Erro ao carregar comentários: ", error);
-                document.getElementById('commentsList').innerHTML = '<p>Erro ao carregar comentários. Por favor, recarregue a página.</p>';
             });
         }
     </script>
