@@ -333,8 +333,8 @@
             background-color: #0a0f27;
         }
     </style>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
 </head>
 <body>
     <!-- Bloco 1 - Container principal -->
@@ -510,109 +510,74 @@
     
 
     <script>
-        // Configuração do Firebase (substitua com seus dados)
-        const firebaseConfig = {
-          apiKey: "SUA_API_KEY",
-          authDomain: "SEU_PROJETO.firebaseapp.com",
-          databaseURL: "https://SEU_PROJETO.firebaseio.com",
-          projectId: "SEU_PROJETO",
-          storageBucket: "SEU_PROJETO.appspot.com",
-          messagingSenderId: "SEU_SENDER_ID",
-          appId: "SEU_APP_ID"
-        };
-        
-        // Inicialize o Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
-      </script>
+  // Configuração do Firebase
+  const firebaseConfig = {
+  apiKey: "AIzaSyCyJWVb3gF2E4L1GaQv96B7hdGiBVjxcDY",
+  authDomain: "chatmibr.firebaseapp.com",
+  databaseURL: "https://chatmibr-default-rtdb.firebaseio.com",
+  projectId: "chatmibr",
+  storageBucket: "chatmibr.firebasestorage.app",
+  messagingSenderId: "241823481009",
+  appId: "1:241823481009:web:6658eb6034c63306c2f690"
+};
+
+  // Inicializa o Firebase
+  firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+</script>
 
     <script>
-        // Interatividade básica
-        document.querySelector('.scrap-form button').addEventListener('click', function() {
-            const textarea = document.querySelector('.scrap-form textarea');
-            if (textarea.value.trim() !== '') {
-                const scrapsBox = document.querySelector('.scraps-box');
-                const newScrap = document.createElement('div');
-                newScrap.className = 'scrap';
-                newScrap.innerHTML = `
-                    <div class="scrap-author">Você</div>
-                    <div class="scrap-date">${new Date().toLocaleString()}</div>
-                    <div class="scrap-content">${textarea.value}</div>
-                `;
-                scrapsBox.insertBefore(newScrap, document.querySelector('.scrap-form'));
-                textarea.value = '';
-                
-                // Efeito visual
-                newScrap.style.opacity = '0';
-                setTimeout(() => {
-                    newScrap.style.transition = 'opacity 0.5s';
-                    newScrap.style.opacity = '1';
-                }, 10);
-            }
-        });
+  // Referência para o chat no Firebase
+  const chatRef = database.ref('mibr-chat');
 
-        // Função para carregar comentários
-  async function loadComments() {
-    try {
-      const response = await fetch('get_comments.php');
-      const data = await response.json();
+  // Função para carregar mensagens
+  function loadMessages() {
+    chatRef.on('value', (snapshot) => {
+      const messages = snapshot.val() || {};
+      const scrapsBox = document.querySelector('.scraps-box');
       
-      if (data.success) {
-        const scrapsBox = document.querySelector('.scraps-box');
-        
-        // Limpa comentários existentes
-        const existingScraps = document.querySelectorAll('.scrap');
-        existingScraps.forEach(scrap => {
-          if (!scrap.classList.contains('scrap-form-container')) {
-            scrap.remove();
-          }
-        });
-        
-        // Adiciona cada comentário
-        data.comments.forEach(comment => {
-          const newScrap = document.createElement('div');
-          newScrap.className = 'scrap';
-          newScrap.innerHTML = `
-            <div class="scrap-author">${comment.author || 'Anônimo'}</div>
-            <div class="scrap-date">${new Date(comment.created_at).toLocaleString()}</div>
-            <div class="scrap-content">${comment.content}</div>
-          `;
-          scrapsBox.insertBefore(newScrap, document.querySelector('.scrap-form'));
-        });
-      }
-    } catch (error) {
-      console.error('Erro ao carregar comentários:', error);
-    }
+      // Limpa as mensagens antigas (exceto o formulário)
+      const existingScraps = document.querySelectorAll('.scrap');
+      existingScraps.forEach(scrap => {
+        if (!scrap.classList.contains('scrap-form-container')) {
+          scrap.remove();
+        }
+      });
+      
+      // Adiciona cada mensagem do banco de dados
+      Object.keys(messages).forEach(key => {
+        const message = messages[key];
+        const newScrap = document.createElement('div');
+        newScrap.className = 'scrap';
+        newScrap.innerHTML = `
+          <div class="scrap-author">${message.author || 'Anônimo'}</div>
+          <div class="scrap-date">${new Date(message.timestamp).toLocaleString()}</div>
+          <div class="scrap-content">${message.content}</div>
+        `;
+        scrapsBox.insertBefore(newScrap, document.querySelector('.scrap-form'));
+      });
+    });
   }
-  
-  // Função para enviar comentário
-  document.querySelector('.scrap-form button').addEventListener('click', async function() {
+
+  // Função para enviar mensagem
+  document.querySelector('.scrap-form button').addEventListener('click', function() {
     const textarea = document.querySelector('.scrap-form textarea');
     const content = textarea.value.trim();
     
     if (content !== '') {
-      try {
-        const response = await fetch('save_comment.php', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: `author=Usuário&content=${encodeURIComponent(content)}`
-        });
-        
-        const data = await response.json();
-        if (data.success) {
-          textarea.value = '';
-          loadComments(); // Recarrega os comentários
-        }
-      } catch (error) {
-        console.error('Erro ao enviar comentário:', error);
-      }
+      // Salva no Firebase
+      chatRef.push({
+        author: 'Usuário', // Pode implementar login depois
+        content: content,
+        timestamp: Date.now()
+      });
+      
+      textarea.value = '';
     }
   });
-  
-  // Carrega os comentários quando a página abre
-  window.addEventListener('DOMContentLoaded', loadComments);
-    </script>
+
+  // Carrega as mensagens quando a página abre
+  window.addEventListener('DOMContentLoaded', loadMessages);
+</script>
 </body>
 </html>
