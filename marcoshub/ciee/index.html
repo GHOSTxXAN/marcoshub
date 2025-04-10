@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turma de Administração - CIEE</title>
+    <!-- Adicione os SDKs do Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid #3498db;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+        }
+        
+        .turma-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .comment-form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #e8f4fc;
+            border-radius: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .comments {
+            margin-top: 30px;
+        }
+        
+        .comment {
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+        }
+        
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .comment-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .comment-date {
+            color: #7f8c8d;
+        }
+        
+        .comment-content {
+            padding-left: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Turma de Administração - CIEE</h1>
+            <p>Espaço para interação e compartilhamento da turma</p>
+        </header>
+        
+        <div class="turma-info">
+            <h2>Informações da Turma</h2>
+            <p><strong>Instrutora:</strong> Jessica</p>
+            <p><strong>Ramo:</strong> Administração</p>
+            <p><strong>Programa:</strong> CIEE</p>
+        </div>
+        
+        <div class="comment-form">
+            <h2>Deixe seu comentário</h2>
+            <form id="commentForm">
+                <div class="form-group">
+                    <label for="name">Seu nome:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem:</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" id="submitBtn">Enviar Comentário</button>
+            </form>
+        </div>
+        
+        <div class="comments">
+            <h2>Comentários da Turma</h2>
+            <div id="commentsList">
+                <div class="loading">Carregando comentários...</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Feito por Marcos - @Hannya Code 2025 </p>
+        </footer>
+    </div>
+
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+  apiKey: "AIzaSyCev05iYOeTq-razhwxdHlkVyvkLKfUNEU",
+  authDomain: "ciee-cee80.firebaseapp.com",
+  databaseURL: "https://ciee-cee80-default-rtdb.firebaseio.com",
+  projectId: "ciee-cee80",
+  storageBucket: "ciee-cee80.firebasestorage.app",
+  messagingSenderId: "160199858488",
+  appId: "1:160199858488:web:cfcf15478229877eaac9cd"
+};
+
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Inicializa o Firestore
+        const db = firebase.firestore();
+        
+        // Referência para a coleção de comentários
+        const commentsRef = db.collection("comments");
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carrega comentários quando a página é carregada
+            loadComments();
+            
+            // Adiciona evento de submit ao formulário
+            document.getElementById('commentForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Pega os valores do formulário
+                const name = document.getElementById('name').value.trim();
+                const message = document.getElementById('message').value.trim();
+                const submitBtn = document.getElementById('submitBtn');
+                
+                if (name && message) {
+                    // Desabilita o botão para evitar múltiplos envios
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Enviando...';
+                    
+                    // Adiciona comentário ao Firestore
+                    addComment(name, message)
+                        .then(() => {
+                            // Limpa o formulário após o envio
+                            document.getElementById('commentForm').reset();
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Enviar Comentário';
+                        })
+                        .catch(error => {
+                            console.error("Erro ao adicionar comentário: ", error);
+                            alert("Ocorreu um erro ao enviar seu comentário. Por favor, tente novamente.");
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Enviar Comentário';
+                        });
+                }
+            });
+        });
+        
+        function addComment(name, message) {
+            // Cria objeto de comentário com data/hora atual
+            const comment = {
+                name: name,
+                message: message,
+                date: firebase.firestore.FieldValue.serverTimestamp() // Usa o timestamp do servidor
+            };
+            
+            // Adiciona ao Firestore e retorna a Promise
+            return commentsRef.add(comment);
+        }
+        
+        function loadComments() {
+            // Configura um listener em tempo real para os comentários
+            commentsRef.orderBy("date", "desc").onSnapshot(snapshot => {
+                const commentsList = document.getElementById('commentsList');
+                
+                // Limpa a lista
+                commentsList.innerHTML = '';
+                
+                if (snapshot.empty) {
+                    commentsList.innerHTML = '<p>Nenhum comentário ainda. Seja o primeiro a comentar!</p>';
+                    return;
+                }
+                
+                snapshot.forEach(doc => {
+                    const comment = doc.data();
+                    const commentDiv = document.createElement('div');
+                    commentDiv.className = 'comment';
+                    
+                    // Verifica se a data existe (pode não existir imediatamente)
+                    let dateString = "Data não disponível";
+                    if (comment.date) {
+                        const date = comment.date.toDate(); // Converte Firestore Timestamp para Date
+                        dateString = date.toLocaleDateString('pt-BR') + ' às ' + date.toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+                    }
+                    
+                    commentDiv.innerHTML = `
+                        <div class="comment-header">
+                            <span class="comment-author">${comment.name}</span>
+                            <span class="comment-date">${dateString}</span>
+                        </div>
+                        <div class="comment-content">
+                            <p>${comment.message}</p>
+                        </div>
+                    `;
+                    
+                    commentsList.appendChild(commentDiv);
+                });
+            }, error => {
+                console.error("Erro ao carregar comentários: ", error);
+                document.getElementById('commentsList').innerHTML = '<p>Erro ao carregar comentários. Por favor, recarregue a página.</p>';
+            });
+        }
+    </script>
+</body>
+</html>
